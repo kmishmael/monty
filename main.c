@@ -45,5 +45,6 @@ int main(int ac, char **av)
 			pall(stack);
 		}
 	}
+	fclose(fptr);
 	return (0);
 }
