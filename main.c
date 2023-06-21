@@ -45,11 +45,13 @@ int main(int ac, char **av)
 		else
 		{
 			fprintf(stderr, "Error at line %d: Unknown opcode: %s\n", line_number, code);
+			free(buffer);
 			exit(EXIT_FAILURE);
 		}
 		line_number++;
 	}
 	fclose(fptr);
+	free(buffer);
 	return (0);
 }
 
