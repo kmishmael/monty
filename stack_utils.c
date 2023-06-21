@@ -11,7 +11,7 @@
  */
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
-	stack_t *new; 
+	stack_t *new;
 	stack_t *h;
 
 	new = malloc(sizeof(stack_t));
