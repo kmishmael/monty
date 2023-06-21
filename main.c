@@ -52,6 +52,7 @@ int main(int ac, char **av)
 	}
 	fclose(fptr);
 	free(buffer);
+	free_dlistint(stack);
 	return (0);
 }
 
@@ -78,7 +79,7 @@ void push(stack_t **stack, unsigned int line_number)
 	char *arg;
 	int v_arg;
 	int i;
-
+	
 	arg = strtok(NULL, "\n ");
 	i = 0;
 	if(arg[i] == '-')

@@ -128,3 +128,24 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 
 	return (-1);
 }
+
+/**
+ * free_dlistint - frees a dlistint_t list
+ *
+ * @head: head of the list
+ * Return: no return
+ */
+void free_dlistint(stack_t *head)
+{
+	stack_t *tmp;
+
+	if (head != NULL)
+		while (head->prev != NULL)
+			head = head->prev;
+
+	while ((tmp = head) != NULL)
+	{
+		head = head->next;
+		free(tmp);
+	}
+}
