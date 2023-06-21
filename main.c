@@ -55,9 +55,11 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-
+		{"add", add},
+		{"swap", swap},
 	};
-	while (i < 4)
+	
+	while (i < 6)
 	{
 		if (strcmp(instructions[i].opcode, code) == 0)
 		{
