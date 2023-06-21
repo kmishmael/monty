@@ -1,5 +1,5 @@
-#ifndef MAIN_H_
-#define MAIN_H_
+#ifndef MONTY_H_
+#define MONTY_H_
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -38,7 +38,7 @@ typedef struct instruction_s
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
-instruction_t* get_function(char *code);
+void (*get_function(char *code)) (stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 #endif

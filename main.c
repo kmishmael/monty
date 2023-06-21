@@ -1,5 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-#include <stdio.h>
 
 /**
  * main - main function
@@ -15,8 +15,8 @@ int main(int ac, char **av)
 	FILE *fptr;
 	char *code;
 	int line_number = 1;
-	instruction_t *instruction;
-
+	void (*instruction) (stack_t **, unsigned int);
+	
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -29,8 +29,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	/* while ((res = getline(&buffer, &i, fptr)) != -1) */
-	while (fgets(buffer, i, fptr) != NULL)
+	while ((getline(&buffer, &i, fptr)) != -1)
 	{
 		code = strtok(buffer, "\n ");
 
@@ -41,7 +40,7 @@ int main(int ac, char **av)
 		instruction = get_function(code);
 		if (instruction != NULL)
 		{
-			instruction->f(&stack, line_number);
+			instruction(&stack, line_number);
 		}
 		else
 		{
@@ -54,26 +53,22 @@ int main(int ac, char **av)
 	return (0);
 }
 
-instruction_t* get_function(char *code) {
+void (*get_function(char *code)) (stack_t **, unsigned int) {
     int i = 0;
 
-    instruction_t *instructions = malloc(2 * sizeof(instruction_t));
-
-    strcpy(instructions[0].opcode, "push");
-    instructions[0].f = push;
-    strcpy(instructions[1].opcode, "pall");
-    instructions[1].f = pall;
-
-    while (i < 2 && strcmp(instructions[i].opcode, code) != 0) {
-        i++;
+    instruction_t instructions[] = {
+	    {"push", push},
+	    {"pall", pall},
+    };
+    while (i < 2)
+    {
+	   if(strcmp(instructions[i].opcode, code) == 0)
+	   {
+		return (instructions[i].f);
+	   }
+	   i++;
     }
-
-    if (i < 2) {
-        return &(instructions[i]);
-    } else {
-        free(instructions);
-        return NULL;
-    }
+    return (NULL);
 }
 
 void push(stack_t **stack, unsigned int line_number)
