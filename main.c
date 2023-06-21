@@ -10,11 +10,11 @@
 int main(int ac, char **av)
 {
 	stack_t *stack = NULL;
-	char *buffer, *code;
+	char *buffer = NULL;
 	size_t i = 0;
 	FILE *fptr;
 	int line_number = 1;
-	void (*instruction)(stack_t **, unsigned int);
+	char *code;
 
 	if (ac != 2)
 	{
@@ -31,19 +31,11 @@ int main(int ac, char **av)
 	{
 		code = strtok(buffer, "\n ");
 		if (code == NULL)
+		{
 			continue;
-		instruction = get_function(code);
-		if (instruction != NULL)
-		{
-			instruction(&stack, line_number);
 		}
-		else
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-					line_number, code);
-			free(buffer);
-			exit(EXIT_FAILURE);
-		} line_number++;
+		handle_line(code, buffer, line_number, &stack);
+		line_number++;
 	}
 	fclose(fptr);
 	free(buffer);
@@ -61,8 +53,11 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+
 	};
-	while (i < 2)
+	while (i < 4)
 	{
 		if (strcmp(instructions[i].opcode, code) == 0)
 		{
@@ -86,10 +81,11 @@ void push(stack_t **stack, unsigned int line_number)
 	int i;
 
 	arg = strtok(NULL, "\n ");
-
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		/*free(buffer);*/
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
@@ -102,6 +98,8 @@ void push(stack_t **stack, unsigned int line_number)
 		if (!isdigit(arg[i]))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		/*free(buffer);*/
+			free_dlistint(*stack);
 			exit(EXIT_FAILURE);
 		}
 		i++;
@@ -126,5 +124,32 @@ void pall(stack_t **stack, unsigned int line_number)
 	{
 		printf("%d\n", head->n);
 		head = head->next;
+	}
+}
+
+/**
+ * handle_line - handles a line
+ * @code: opcode string
+ * @buffer: string
+ * @line_number: line in th code being run
+ * @stack: reference to stack
+ * Return: void
+ */
+void handle_line(char *code, char *buffer, int line_number, stack_t **stack)
+{
+	void (*instruction)(stack_t **, unsigned int);
+
+	instruction = get_function(code);
+	if (instruction != NULL)
+	{
+		instruction(stack, line_number);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n",
+				line_number, code);
+		free(buffer);
+		free_dlistint(*stack);
+		exit(EXIT_FAILURE);
 	}
 }

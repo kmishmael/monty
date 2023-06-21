@@ -42,4 +42,7 @@ void (*get_function(char *code)) (stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_dlistint(stack_t *head);
+void handle_line(char *code, char *buffer, int line_number, stack_t **stack);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned line_number);
 #endif
