@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * pint - pint
+ * @stack: the stack
+ * @line_number: line_number
+ * Return: void
+ */
 void pint(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
@@ -12,9 +18,16 @@ void pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 }
 
+/**
+ * pop - pop
+ * @stack: the stack
+ * @line_number: line_number
+ * Return: void
+ */
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h;
+
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
@@ -25,34 +38,47 @@ void pop(stack_t **stack, unsigned int line_number)
 	free(h);
 }
 
+/**
+ * add - adds nodes
+ * @stack: the stack
+ * @line_number: line number
+ * Return: void
+ */
 void add(stack_t **stack, unsigned int line_number)
 {
-    stack_t *head;
-    int res;
+	stack_t *head;
+	int res;
 
-    head = *stack;
-    if (head && head->next)
-    {
-        res = head->n + head->next->n;
-        delete_dnodeint_at_index(stack, 0);
-        delete_dnodeint_at_index(stack, 0);
-        add_dnodeint(stack, res);
-    }
-    else
-    {
-        fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-        exit(EXIT_FAILURE);
-    }
+	head = *stack;
+	if (head && head->next)
+	{
+		res = head->n + head->next->n;
+		delete_dnodeint_at_index(stack, 0);
+		delete_dnodeint_at_index(stack, 0);
+		add_dnodeint(stack, res);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 }
 
-void swap(stack_t **stack, unsigned line_number)
+/**
+ * swap - swap some stuff
+ * @stack: the stack
+ * @line_number: line number
+ * Return: void
+ */
+void swap(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 	stack_t *head = NULL;
+
 	head = *stack;
 	for (; head != NULL; head = head->next, i++)
 		;
-	if (i < stderr)
+	if (i < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);

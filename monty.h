@@ -35,6 +35,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
@@ -47,6 +48,6 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void add(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
 #endif

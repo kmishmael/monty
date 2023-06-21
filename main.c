@@ -58,7 +58,6 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 		{"add", add},
 		{"swap", swap},
 	};
-	
 	while (i < 6)
 	{
 		if (strcmp(instructions[i].opcode, code) == 0)
@@ -86,7 +85,6 @@ void push(stack_t **stack, unsigned int line_number)
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		/*free(buffer);*/
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -100,7 +98,6 @@ void push(stack_t **stack, unsigned int line_number)
 		if (!isdigit(arg[i]))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		/*free(buffer);*/
 			free_dlistint(*stack);
 			exit(EXIT_FAILURE);
 		}
