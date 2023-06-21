@@ -39,7 +39,7 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			fprintf(stderr, "Error at line %d: Unknown opcode: %s\n",
+			fprintf(stderr, "L%d: unknown instruction %s\n",
 					line_number, code);
 			free(buffer);
 			exit(EXIT_FAILURE);
@@ -86,6 +86,12 @@ void push(stack_t **stack, unsigned int line_number)
 	int i;
 
 	arg = strtok(NULL, "\n ");
+
+	if (arg == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	if (arg[i] == '-')
 	{
@@ -95,7 +101,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		if (!isdigit(arg[i]))
 		{
-			printf("L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 		i++;
