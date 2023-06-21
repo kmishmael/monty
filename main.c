@@ -10,7 +10,7 @@
 int main(int ac, char **av)
 {
 	stack_t *stack = NULL;
-	char *buffer = NULL, code;
+	char *buffer, *code;
 	size_t i = 0;
 	FILE *fptr;
 	int line_number = 1;
