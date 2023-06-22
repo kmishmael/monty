@@ -35,8 +35,12 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-extern char *buffer;
-extern FILE *fptr;
+typedef struct global_data
+{
+	char *buffer;
+	FILE *fptr;
+} global_data_t;
+extern global_data_t global_data;
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);

@@ -7,6 +7,6 @@
  */
 void free_things(void)
 {
-	free(buffer);
-	fclose(fptr);
+	free(global_data.buffer);
+	fclose(global_data.fptr);
 }

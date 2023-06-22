@@ -80,8 +80,8 @@ void _swap(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		free_dlistint(*stack);
-		free(buffer);
-		fclose(fptr);
+		free(global_data.buffer);
+		fclose(global_data.fptr);
 		exit(EXIT_FAILURE);
 	}
 	head = *stack;

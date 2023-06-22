@@ -1,7 +1,6 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-char *buffer = NULL;
-FILE *fptr = NULL;
+global_data_t global_data = {NULL, NULL};
 /**
  * main - main function
  * @ac: number of args
@@ -20,24 +19,24 @@ int main(int ac, char **av)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fptr = fopen(av[1], "r");
-	if (fptr == NULL)
+	global_data.fptr = fopen(av[1], "r");
+	if (global_data.fptr == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((getline(&buffer, &i, fptr)) != -1)
+	while ((getline(&global_data.buffer, &i, global_data.fptr)) != -1)
 	{
-		code = strtok(buffer, "\n ");
+		code = strtok(global_data.buffer, "\n ");
 		if (code == NULL)
 		{
 			continue;
 		}
-		handle_line(code, buffer, line_number, &stack);
+		handle_line(code, global_data.buffer, line_number, &stack);
 		line_number++;
 	}
-	fclose(fptr);
-	free(buffer);
+	fclose(global_data.fptr);
+	free(global_data.buffer);
 	free_dlistint(stack);
 	return (0);
 }
@@ -85,8 +84,8 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_dlistint(*stack);
-		free(buffer);
-		fclose(fptr);
+		free(global_data.buffer);
+		fclose(global_data.fptr);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -117,7 +116,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 /**
  * handle_line - handles a line
  * @code: opcode string
- * @buffer: string
+ * @global_data.buffer: string
  * @line_number: line in th code being run
  * @stack: reference to stack
  * Return: void
