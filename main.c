@@ -58,7 +58,7 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 		{"swap", _swap},
 		{"nop", nop},
 	};
-	while (i < 6)
+	while (i < 7)
 	{
 		if (strcmp(instructions[i].opcode, code) == 0)
 		{
