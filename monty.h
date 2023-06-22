@@ -51,5 +51,5 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void add(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
-
+void free_things(void);
 #endif
