@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-bus_t bus = {NULL, NULL, NULL, 0};
-
+char *buffer = NULL;
+FILE *fptr = NULL;
 /**
  * main - main function
  * @ac: number of args
@@ -11,11 +11,9 @@ bus_t bus = {NULL, NULL, NULL, 0};
 int main(int ac, char **av)
 {
 	stack_t *stack = NULL;
-	char *buffer = NULL;
-	size_t i = 0;
-	FILE *fptr;
 	int line_number = 1;
 	char *code;
+	size_t i = 0;
 
 	if (ac != 2)
 	{
