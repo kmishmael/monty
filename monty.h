@@ -52,4 +52,5 @@ void add(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void free_things(void);
+int is_number(char *num);
 #endif

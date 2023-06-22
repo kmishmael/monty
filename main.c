@@ -79,33 +79,15 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char *arg;
 	int v_arg;
-	int i;
 
 	arg = strtok(NULL, "\n ");
-	if (arg == NULL)
+	if (arg == NULL || is_number(arg) != 1)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_dlistint(*stack);
 		free(buffer);
 		fclose(fptr);
 		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	if (arg[i] == '-')
-	{
-		i++;
-	}
-	while (arg[i] != '\0')
-	{
-		if (!isdigit(arg[i]))
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			free_dlistint(*stack);
-			free(buffer);
-			fclose(fptr);
-			exit(EXIT_FAILURE);
-		}
-		i++;
 	}
 	v_arg = atoi(arg);
 	add_dnodeint(stack, v_arg);
