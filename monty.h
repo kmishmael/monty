@@ -35,6 +35,11 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * struct global_data - global data
+ * @buffer: getline buffer
+ * @fptr: file pointer
+*/
 typedef struct global_data
 {
 	char *buffer;

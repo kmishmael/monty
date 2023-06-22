@@ -116,7 +116,7 @@ void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 /**
  * handle_line - handles a line
  * @code: opcode string
- * @global_data.buffer: string
+ * @buffer: string
  * @line_number: line in th code being run
  * @stack: reference to stack
  * Return: void
