@@ -72,13 +72,10 @@ void add(stack_t **stack, unsigned int line_number)
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	int i = 0;
 	stack_t *head = NULL;
 
 	head = *stack;
-	for (; head != NULL; head = head->next, i++)
-		;
-	if (i < 2)
+	if (head == NULL || head->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
