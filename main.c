@@ -89,8 +89,11 @@ void push(stack_t **stack, unsigned int line_number)
 		fclose(fptr);
 		exit(EXIT_FAILURE);
 	}
+	else
+	{
 	v_arg = atoi(arg);
 	add_dnodeint(stack, v_arg);
+	}
 }
 
 /**
@@ -99,11 +102,10 @@ void push(stack_t **stack, unsigned int line_number)
  * @line_number: the current line number
  * Return: void
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	stack_t *head;
 
-	(void)line_number;
 	head = *stack;
 	while (head != NULL)
 	{

@@ -42,7 +42,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void (*get_function(char *code)) (stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 void free_dlistint(stack_t *head);
 void handle_line(char *code, char *buffer, int line_number, stack_t **stack);
 void pint(stack_t **stack, unsigned int line_number);
