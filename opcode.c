@@ -70,6 +70,7 @@ void add(stack_t **stack, unsigned int line_number)
  * @line_number: line number
  * Return: void
  */
+
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = NULL;
@@ -78,6 +79,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (head == NULL || head->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
 	head = *stack;
