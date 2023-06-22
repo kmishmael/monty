@@ -66,7 +66,7 @@ void add(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * swap - swap some stuff
+ * _swap - swap some stuff
  * @stack: the stack
  * @line_number: line number
  * Return: void
