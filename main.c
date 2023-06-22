@@ -86,6 +86,8 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_dlistint(*stack);
+		free(buffer);
+		fclose(fptr);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
@@ -93,12 +95,14 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		i++;
 	}
-	while (arg[i])
+	while (arg[i] != '\0')
 	{
 		if (!isdigit(arg[i]))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			free_dlistint(*stack);
+			free(buffer);
+			fclose(fptr);
 			exit(EXIT_FAILURE);
 		}
 		i++;
