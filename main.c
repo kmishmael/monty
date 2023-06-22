@@ -55,7 +55,7 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 		{"pint", pint},
 		{"pop", pop},
 		{"add", add},
-		{"swap", swap},
+		{"swap", _swap},
 		{"nop", nop},
 	};
 	while (i < 6)
