@@ -59,7 +59,15 @@ void pop(stack_t **stack, unsigned int line_number);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void add(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
+/**
+ * nop - no operation performed
+ * @stack: double pointer to the top of stack
+ * @line_number: line number of current instruction
+ *
+ * Return: void
+ */
+void nop(__attribute__ ((unused))stack_t **stack, __attribute__ ((unused))
+	unsigned int line_number);
 void free_things(void);
 int is_number(char *num);
 #endif
