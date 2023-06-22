@@ -55,12 +55,12 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		res = head->n + head->next->n;
 		delete_dnodeint_at_index(stack, 0);
-		delete_dnodeint_at_index(stack, 0);
-		add_dnodeint(stack, res);
+		(*stack)->n = res;
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
