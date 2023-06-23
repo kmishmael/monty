@@ -28,11 +28,10 @@ int main(int ac, char **av)
 	while ((getline(&global_data.buffer, &i, global_data.fptr)) != -1)
 	{
 		code = strtok(global_data.buffer, "\n ");
-		if (code == NULL)
+		if (code != NULL)
 		{
-			continue;
+			handle_line(code, global_data.buffer, line_number, &stack);
 		}
-		handle_line(code, global_data.buffer, line_number, &stack);
 		line_number++;
 	}
 	fclose(global_data.fptr);
