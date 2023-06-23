@@ -60,8 +60,9 @@ void (*get_function(char *code)) (stack_t **, unsigned int) {
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
+		{"pstr", pstr},
 	};
-	while (i < 12)
+	while (i < 13)
 	{
 		if (strcmp(instructions[i].opcode, code) == 0)
 		{
