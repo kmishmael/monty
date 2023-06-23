@@ -126,20 +126,14 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index)
  */
 void free_dlistint(stack_t *head)
 {
-	stack_t *tmp;
+	stack_t *tmp, *current;
 
-	if (head == NULL)
+	current = head;
+	while (current != NULL)
 	{
-		return;
-	}
-
-	while (head->prev != NULL)
-		head = head->prev;
-
-	while (head != NULL)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
+		tmp = current->next;
+		free(current);
+		current = tmp;
 	}
 }
+
