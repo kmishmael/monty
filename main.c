@@ -34,9 +34,9 @@ int main(int ac, char **av)
 		}
 		line_number++;
 	}
+	printf("here\n");
 	fclose(global_data.fptr);
 	free(global_data.buffer);
-	free_dlistint(stack);
 	return (0);
 }
 

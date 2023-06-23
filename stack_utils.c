@@ -128,12 +128,17 @@ void free_dlistint(stack_t *head)
 {
 	stack_t *tmp;
 
-	if (head != NULL)
-		while (head->prev != NULL)
-			head = head->prev;
-
-	while ((tmp = head) != NULL)
+	if (head == NULL)
 	{
+		return;
+	}
+
+	while (head->prev != NULL)
+		head = head->prev;
+
+	while (head != NULL)
+	{
+		tmp = head;
 		head = head->next;
 		free(tmp);
 	}
