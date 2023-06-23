@@ -52,8 +52,9 @@ void add(stack_t **stack, unsigned int line_number)
 	if (head && head->next)
 	{
 		res = head->n + head->next->n;
-		delete_dnodeint_at_index(stack, 0);
-		(*stack)->n = res;
+		head->next->n = res;
+		*stack = head->next;
+		free(head);
 	}
 	else
 	{
