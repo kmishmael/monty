@@ -55,26 +55,30 @@ void rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 }
 
 /**
- * rotr - rotates a linked list
+ * rotr - rotates a linked list. The last element of the stack
+ *        becomes the top element of the stack
  * @stack: the stack itself
  * @line_number: line number the code occurs
  * Return: void
  */
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h = NULL;
+	stack_t *current = *stack;
+	stack_t *last = NULL;
 
 	(void)line_number;
-	if (*stack == NULL)
+
+	if (current == NULL || current->next == NULL)
 		return;
-	if ((*stack)->next == NULL)
-		return;
-	h = *stack;
-	for (; h->next != NULL; h = h->next)
-		;
-	h->prev->next = NULL;
-	h->next = *stack;
-	h->prev = NULL;
-	(*stack)->prev = h;
-	*stack = h;
+
+	while (current->next != NULL)
+	{
+		last = current;
+		current = current->next;
+	}
+	last->next = NULL;
+	current->next = *stack;
+	current->prev = NULL;
+	(*stack)->prev = current;
+	*stack = current;
 }
